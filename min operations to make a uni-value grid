@@ -1,0 +1,31 @@
+class Solution:
+    def minOperations(self, grid: List[List[int]], x: int) -> int:
+        def f(l, r) -> int:
+            cnt = 0
+            for i in range(l, r):
+                if abs(numbers[i] - numbers[mid]) % x != 0:
+                    return -1
+                cnt += abs(numbers[i] - numbers[mid]) // x
+            return cnt
+        numbers = []
+        n = len(grid)
+        m = len(grid[0])
+        for i in range(n):
+            for j in range(m):
+                numbers.append(grid[i][j]) 
+        numbers = sorted(numbers) # now you can clearly find the median.
+        N = n*m
+        mid = N//2 # if N is even, you can take any of the median.
+        ans = 0
+
+        cnt = f(0, mid)
+        if cnt == -1:
+            return -1
+        ans += cnt
+
+        cnt = f(mid+1, N)
+        if cnt == -1:
+            return -1
+        ans += cnt   
+
+        return ans
