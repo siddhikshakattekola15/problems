@@ -1,0 +1,10 @@
+class Solution:
+    def separateDigits(self, nums: List[int]) -> List[int]:
+        ansstr=""
+        for i in nums:
+            ansstr+=str(i)
+        n=len(ansstr)
+        ans=[0]*n
+        for j in range(n):
+            ans[j]=int(ansstr[j])
+        return ans
